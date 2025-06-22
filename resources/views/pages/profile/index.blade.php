@@ -49,7 +49,7 @@
                                         <b>Nomor Hp :</b> <a class="float-right">{{ auth()->user()->no_hp }}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Alamat :</b> <a class="float-right">{{ auth()->user()->alamat }}</a>
+                                        <b>Jabatan :</b> <a class="float-right">{{ auth()->user()->jabatan }}</a>
                                     </li>
                                     <li class="list-group-item">
                                         <b>Date Account :</b> <a class="float-right">{{ auth()->user()->created_at->isoformat('DD MMMM Y') }}</a>

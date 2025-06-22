@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\profileController;
-use App\Http\Controllers\Admin\{adminController,dashboardController};
+
+use App\Http\Controllers\Admin\SiswaController;
+
+use App\Http\Controllers\Admin\DataKepegawaianController;
+use App\Http\Controllers\Admin\{adminController,dashboardController, DokumenSekolahController, SoalController, SuratMasukKeluarController};
 
 
 /*
@@ -23,7 +27,7 @@ Route::get('/error-page', [dashboardController::class,'error'])->name('error');
 Route::group(['middleware' => 'auth', 'PreventBackHistory'], function () {
 
 // dashboard
-Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [dashboardController::class, 'index'])->name('dashboard');
 
 // profile
 Route::get('/profile/{encryptedId}/edit' ,[profileController::class, 'index'])->name('profile.index');
@@ -35,6 +39,12 @@ Route::middleware(['AdminSuper'])->group( function(){
 
 // crud admin
 Route::resource('/admin', adminController::class);
+Route::resource('data-kepegawaian', DataKepegawaianController::class);
+Route::resource('surat-masuk-keluar', SuratMasukKeluarController::class);
+Route::resource('soal', SoalController::class);
+Route::resource('siswa', SiswaController::class);
+Route::resource('dokumen-sekolah', DokumenSekolahController::class);
+
 
 
 });

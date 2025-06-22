@@ -1,29 +1,48 @@
-  <!-- Main Sidebar Container -->
-  <style>
-    .sidebar-red {
-    background-color: #1b1c3c; /* Warna merah */
-}
+<style>
+    .sidebar-gradient-primary {
+        background: linear-gradient(to bottom, #1e3c72, #2a5298); /* Gradasi biru */
+        color: #ffffff;
+    }
 
-.sidebar-red .nav-link {
-    color: #ffffff; /* Warna teks putih */
-}
+    .sidebar-gradient-primary .nav-link {
+        color: #ffffff;
+    }
 
-.sidebar-red .nav-link:hover {
-    background-color: #1b1c3c; /* Warna merah tua saat hover */
-}
+    .sidebar-gradient-primary .nav-link.active,
+    .sidebar-gradient-primary .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+    }
 
-.sidebar-red .brand-link {
-    border-bottom: 1px solid #1b1c3c; /* Garis bawah merah tua */
-}
-  </style>
+    .sidebar-gradient-primary .brand-link {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        color: #ffffff;
+    }
+
+    .sidebar-gradient-primary .brand-text {
+        color: #ffffff;
+    }
+
+    .sidebar-gradient-primary .user-panel .info a,
+    .sidebar-gradient-primary .user-panel .info span {
+        color: #ffffff;
+    }
+
+    .sidebar-gradient-primary .nav-header {
+        color: #ffffff;
+        font-weight: bold;
+    }
+</style>
+
 
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-red elevation-4">
+<aside class="main-sidebar sidebar-gradient-primary elevation-4">
+
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link">
         <img src="{{ asset('assets/img/logoft.png') }}" alt="Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8; border: 2px solid white;">
-        <span class="brand-text font-weight-light text-white">Andira Jasa Semesta</span>
+        <span class="brand-text font-weight-light text-white">SMP NEGRI 2</span>
     </a>
 
     <!-- Sidebar -->
@@ -70,6 +89,41 @@
                         <a href="{{ route('admin.index') }}" class="nav-link @yield('admin')">
                             <i class="nav-icon ion ion-person-add"></i>
                             <p>Admin</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('data-kepegawaian.index') }}" class="nav-link @yield('kepegawaian')">
+                            <i class="nav-icon fas fa-id-card-alt"></i>
+                            <p>Data Kepegawaian</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('surat-masuk-keluar.index') }}" class="nav-link @yield('surat')">
+                            <i class="nav-icon fas fa-envelope-open-text"></i>
+                            <p>Surat</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('soal.index') }}" class="nav-link @yield('soal')">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>Soal</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('siswa.index') }}" class="nav-link @yield('siswa')">
+                             <i class="nav-icon fas fa-users"></i>
+                            <p>Siswa/i</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('dokumen-sekolah.index') }}" class="nav-link @yield('dokumen')">
+                          <i class="nav-icon fas fa-archive"></i>
+                            <p>Dokumen Sekolah/i</p>
                         </a>
                     </li>
                 @endif

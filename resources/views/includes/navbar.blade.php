@@ -1,5 +1,44 @@
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand sidebar-red fixed-top">
+ <style>
+    .navbar-gradient-primary {
+        background: linear-gradient(to right, #1e3c72, #2a5298); /* Gradient biru */
+        color: #ffffff;
+    }
+
+    .navbar-gradient-primary .nav-link,
+    .navbar-gradient-primary .nav-item .dropdown-menu {
+        color: #ffffff;
+    }
+
+    .navbar-gradient-primary .nav-link:hover,
+    .navbar-gradient-primary .nav-link:focus {
+        color: #d1d1d1;
+    }
+
+    .navbar-gradient-primary .dropdown-menu {
+        background-color: #2a5298;
+        border: none;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar-gradient-primary .dropdown-item {
+        color: #ffffff;
+    }
+
+    .navbar-gradient-primary .dropdown-item:hover {
+        background-color: rgba(255,255,255,0.1);
+        color: #ffffff;
+    }
+
+    .navbar-gradient-primary .dropdown-header {
+        color: #ffffff;
+        font-weight: bold;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+</style>
+ <!-- Navbar -->
+<!-- Navbar -->
+<nav class="main-header navbar navbar-expand navbar-gradient-primary fixed-top">
+
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">

@@ -1,92 +1,165 @@
 @extends('layouts.template_default')
-@section('title', 'Andira Jasa Semesta')
-@section('dashboard', 'active ')
+@section('title', 'Sistem Pengarsipan Dokumen')
+@section('dashboard', 'active')
 @section('content')
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Selamat Datang, <span class="btn btn-xs btn-success font-italic">{{ auth()->user()->name }}</span> Di Andira Jasa Semesta</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+
+<div class="content-wrapper">
+    <!-- Header -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="m-0">📂 Sistem Pengarsipan Dokumen</h1>
+                    <p class="text-muted">
+                        Selamat datang <strong>{{ auth()->user()->name }}</strong> di Sistem Arsip <strong>SMP Negeri 2</strong>
+                    </p>
+                </div>
+                <div class="col-md-4 text-md-right text-center mt-3 mt-md-0">
+                    <div>
+                        <small class="text-muted d-block mb-1">🗓️ Hari/Tanggal:</small>
+                        <span id="tanggal" class="badge badge-info p-2 mb-1">--</span>
+                    </div>
+                    <div class="mt-2">
+                        <small class="text-muted d-block">⏰ Waktu:</small>
+                        <span id="jam" class="badge badge-success p-2">--</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /.content-header -->
-
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <!-- Small boxes (Stat box) -->
-                @if (auth()->user()->level_id == 1)
-                    <div class="row">
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-primary">
-                                <div class="inner">
-                                    <h3>{{ $user }}</h3>
-
-                                    <p>User Registrations</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                                <a href="{{ route('admin.index') }}" class="small-box-footer">More info <i
-                                        class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-
-                        {{-- <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-light">
-                                <div class="inner">
-                                    <h3>{{ $wanita }}</h3>
-
-                                    <p>Mahasiswa Wanita</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-female"></i>
-                                </div>
-                                <a href="{{ route('admin.index') }}" class="small-box-footer">More info <i
-                                        class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-secondary">
-                                <div class="inner">
-                                    <h3>{{ $pria }}</h3>
-                                    <p>Mahasiswa Pria</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-male"></i>
-                                </div>
-                                <a href="{{ route('admin.index') }}" class="small-box-footer">More info <i
-                                        class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div> --}}
-                        <!-- ./col -->
-
-                @else
-                    <div class="mb-4">
-
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-md-12 mb-4">
-                                <h1 class="text-center text-bold">INFORMASI KP DAN SKRIPSI</h1>
-                            </div>
-
-                @endif
-                <!-- /.row (main row) -->
-            </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
     </div>
+
+    <!-- Main Content -->
+    <section class="content">
+        <div class="container-fluid">
+            {{-- @if (auth()->user()->level_id == 1) --}}
+                <div class="row">
+                    <!-- Total Pengguna -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body d-flex align-items-center">
+                                <i class="fas fa-users fa-3x text-primary mr-3"></i>
+                                <div>
+                                    <h5 class="text-primary font-weight-bold mb-0">Total Pengguna</h5>
+                                    <small>{{ $user }} User</small>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <a href="{{ route('admin.index') }}" class="btn btn-sm btn-outline-primary">Lihat</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Kepegawaian -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body d-flex align-items-center">
+                                <i class="fas fa-id-badge fa-3x text-info mr-3"></i>
+                                <div>
+                                    <h5 class="text-info font-weight-bold mb-0">Data Kepegawaian</h5>
+                                    <small>Total: {{ $kepegawaian }}</small>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <a href="{{ route('data-kepegawaian.index') }}" class="btn btn-sm btn-outline-info">Lihat</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dokumen Sekolah -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-left-secondary shadow h-100 py-2">
+                            <div class="card-body d-flex align-items-center">
+                                <i class="fas fa-archive fa-3x text-secondary mr-3"></i>
+                                <div>
+                                    <h5 class="text-secondary font-weight-bold mb-0">Dokumen Sekolah</h5>
+                                    <small>Total: {{ $dokumen }}</small>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <a href="{{ route('dokumen-sekolah.index') }}" class="btn btn-sm btn-outline-secondary">Lihat</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soal -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body d-flex align-items-center">
+                                <i class="fas fa-file-alt fa-3x text-warning mr-3"></i>
+                                <div>
+                                    <h5 class="text-warning font-weight-bold mb-0">Data Soal</h5>
+                                    <small>Total: {{ $soal }}</small>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <a href="{{ route('soal.index') }}" class="btn btn-sm btn-outline-warning">Lihat</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Siswa -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body d-flex align-items-center">
+                                <i class="fas fa-user-graduate fa-3x text-success mr-3"></i>
+                                <div>
+                                    <h5 class="text-success font-weight-bold mb-0">Data Siswa</h5>
+                                    <small>Total: {{ $siswa }}</small>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <a href="{{ route('siswa.index') }}" class="btn btn-sm btn-outline-success">Lihat</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Surat -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-left-dark shadow h-100 py-2">
+                            <div class="card-body d-flex align-items-center">
+                                <i class="fas fa-envelope-open-text fa-3x text-dark mr-3"></i>
+                                <div>
+                                    <h5 class="text-dark font-weight-bold mb-0">Surat Masuk/Keluar</h5>
+                                    <small>Total: {{ $surat }}</small>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <a href="{{ route('surat-masuk-keluar.index') }}" class="btn btn-sm btn-outline-dark">Lihat</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            {{-- @endif --}}
+        </div>
+    </section>
+</div>
+
+<script>
+    function updateTime() {
+        const now = new Date();
+        const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+            "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+        ];
+
+        const jam = now.getHours().toString().padStart(2, '0');
+        const menit = now.getMinutes().toString().padStart(2, '0');
+        const detik = now.getSeconds().toString().padStart(2, '0');
+
+        const tanggal = now.getDate();
+        const bulanNama = bulan[now.getMonth()];
+        const tahun = now.getFullYear();
+        const hariNama = hari[now.getDay()];
+
+        document.getElementById('jam').textContent = `${jam}:${menit}:${detik}`;
+        document.getElementById('tanggal').textContent = `${hariNama}, ${tanggal} ${bulanNama} ${tahun}`;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateTime();
+        setInterval(updateTime, 1000);
+    });
+</script>
+
 @endsection
