@@ -53,7 +53,7 @@ class adminController extends Controller
             'email' => $request->email,
             'password' => hash::make($request->password),
             'image' => $request->image,
-            'jabatan' => $request->alamat,
+            'jabatan' => $request->jabatan,
             'level_id' => $request->level_id
         ];
 

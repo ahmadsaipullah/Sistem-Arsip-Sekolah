@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Level;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +21,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+          $levels = Level::all();
+        return view('auth.register', compact('levels'));
     }
 
     /**
@@ -32,27 +34,27 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'nopol' => ['required', 'string', 'unique:'.User::class],
-            'no_rangka' => ['required', 'string', 'unique:'.User::class],
+            'nip' => ['required', 'string', 'unique:users'],
             'no_hp' => ['required', 'string', 'max:13'],
+            'password' => ['required', 'min:6'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'jabatan' => ['required', 'string'],
+            'level_id' => ['nullable'],
             'email' => ['required', 'string', 'lowercase', 'email:dns', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', 'min:6', Rules\Password::defaults()],
-            'image' => ['nullable'],
-            'alamat' => ['required', 'string'],
-            'tipe_mobil' => ['required', 'string'],
+
 
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'nopol' => $request->nopol,
-            'no_rangka' => $request->no_rangka,
+             'name' => $request->name,
+            'nip' => $request->nip,
             'no_hp' => $request->no_hp,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => hash::make($request->password),
             'image' => $request->image,
-            'tipe_mobil' => $request->tipe_mobil,
-            'alamat' => $request->alamat,
+            'jabatan' => $request->jabatan,
+            'level_id' => $request->level_id
 
         ]);
 

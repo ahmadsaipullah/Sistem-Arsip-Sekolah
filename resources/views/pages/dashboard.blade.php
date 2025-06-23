@@ -27,14 +27,12 @@
             </div>
         </div>
     </div>
-
-    <!-- Main Content -->
-    <section class="content">
+ @if (auth()->user()->level_id == 1)
+     <section class="content">
         <div class="container-fluid">
-            {{-- @if (auth()->user()->level_id == 1) --}}
                 <div class="row">
                     <!-- Total Pengguna -->
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-12 mb-4">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body d-flex align-items-center">
                                 <i class="fas fa-users fa-3x text-primary mr-3"></i>
@@ -48,9 +46,32 @@
                             </div>
                         </div>
                     </div>
+                </div>
+        </div>
+    </section>
+@else
+    <!-- Main Content -->
+    <section class="content">
+        <div class="container-fluid">
+                <div class="row">
+                    <!-- Total Pengguna -->
+                    {{-- <div class="col-md-3 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body d-flex align-items-center">
+                                <i class="fas fa-users fa-3x text-primary mr-3"></i>
+                                <div>
+                                    <h5 class="text-primary font-weight-bold mb-0">Total Pengguna</h5>
+                                    <small>{{ $user }} User</small>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <a href="{{ route('admin.index') }}" class="btn btn-sm btn-outline-primary">Lihat</a>
+                            </div>
+                        </div>
+                    </div> --}}
 
                     <!-- Data Kepegawaian -->
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card border-left-info shadow h-100 py-2">
                             <div class="card-body d-flex align-items-center">
                                 <i class="fas fa-id-badge fa-3x text-info mr-3"></i>
@@ -66,7 +87,7 @@
                     </div>
 
                     <!-- Dokumen Sekolah -->
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card border-left-secondary shadow h-100 py-2">
                             <div class="card-body d-flex align-items-center">
                                 <i class="fas fa-archive fa-3x text-secondary mr-3"></i>
@@ -82,7 +103,7 @@
                     </div>
 
                     <!-- Soal -->
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card border-left-warning shadow h-100 py-2">
                             <div class="card-body d-flex align-items-center">
                                 <i class="fas fa-file-alt fa-3x text-warning mr-3"></i>
@@ -130,9 +151,10 @@
                     </div>
 
                 </div>
-            {{-- @endif --}}
+
         </div>
     </section>
+    @endif
 </div>
 
 <script>

@@ -58,6 +58,7 @@
                 <img src="{{ asset('assets/img/logoft.png') }}" alt="logo" width="100px" class="mb-2" />
                 <h5 class="m-0 font-weight-bold text-primary">SMP Negeri 2</h5>
             </div>
+
             <div class="card-body">
                 <p class="login-box-msg">Register a new account</p>
 
@@ -66,55 +67,43 @@
 
                     {{-- Nama Lengkap --}}
                     <div class="input-group mb-3">
-                        <input type="text" id="name" name="name"
-                            class="form-control @error('name') is-invalid @enderror" placeholder="Nama Lengkap"
-                            value="{{ old('name') }}" required autofocus />
+                        <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"
+                            placeholder="Nama Lengkap" value="{{ old('name') }}" required autofocus />
                         <div class="input-group-append">
                             <div class="input-group-text"><span class="fas fa-user"></span></div>
                         </div>
                     </div>
-                    @error('name')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                    @error('name') <span class="text-danger">{{ $message }}</span> @enderror
 
                     {{-- NIP --}}
                     <div class="input-group mb-3">
-                        <input type="text" id="nip" name="nip"
-                            class="form-control @error('nip') is-invalid @enderror" placeholder="NIP"
-                            value="{{ old('nip') }}" required />
+                        <input type="text" id="nip" name="nip" class="form-control @error('nip') is-invalid @enderror"
+                            placeholder="NIP" value="{{ old('nip') }}" required />
                         <div class="input-group-append">
                             <div class="input-group-text"><span class="fas fa-id-badge"></span></div>
                         </div>
                     </div>
-                    @error('nip')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                    @error('nip') <span class="text-danger">{{ $message }}</span> @enderror
 
                     {{-- Email --}}
                     <div class="input-group mb-3">
-                        <input type="email" id="email" name="email"
-                            class="form-control @error('email') is-invalid @enderror" placeholder="Email"
-                            value="{{ old('email') }}" required />
+                        <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                            placeholder="Email" value="{{ old('email') }}" required />
                         <div class="input-group-append">
                             <div class="input-group-text"><span class="fas fa-envelope"></span></div>
                         </div>
                     </div>
-                    @error('email')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                    @error('email') <span class="text-danger">{{ $message }}</span> @enderror
 
                     {{-- No HP --}}
                     <div class="input-group mb-3">
-                        <input type="text" id="no_hp" name="no_hp"
-                            class="form-control @error('no_hp') is-invalid @enderror" placeholder="No HP"
-                            value="{{ old('no_hp') }}" required />
+                        <input type="text" id="no_hp" name="no_hp" class="form-control @error('no_hp') is-invalid @enderror"
+                            placeholder="No HP" value="{{ old('no_hp') }}" required />
                         <div class="input-group-append">
                             <div class="input-group-text"><span class="fas fa-phone"></span></div>
                         </div>
                     </div>
-                    @error('no_hp')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                    @error('no_hp') <span class="text-danger">{{ $message }}</span> @enderror
 
                     {{-- Jabatan --}}
                     <div class="input-group mb-3">
@@ -125,9 +114,7 @@
                             <div class="input-group-text"><span class="fas fa-briefcase"></span></div>
                         </div>
                     </div>
-                    @error('jabatan')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                    @error('jabatan') <span class="text-danger">{{ $message }}</span> @enderror
 
                     {{-- Password --}}
                     <div class="input-group mb-3">
@@ -137,9 +124,7 @@
                             <div class="input-group-text"><span class="fas fa-lock"></span></div>
                         </div>
                     </div>
-                    @error('password')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                    @error('password') <span class="text-danger">{{ $message }}</span> @enderror
 
                     {{-- Confirm Password --}}
                     <div class="input-group mb-3">
@@ -150,11 +135,22 @@
                             <div class="input-group-text"><span class="fas fa-lock"></span></div>
                         </div>
                     </div>
-                    @error('password_confirmation')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                    @error('password_confirmation') <span class="text-danger">{{ $message }}</span> @enderror
 
-                    {{-- Terms Checkbox --}}
+                    {{-- Level User --}}
+                    <div class="form-group">
+                        <select class="form-control @error('level_id') is-invalid @enderror" id="level_id" name="level_id" required>
+                            <option disabled selected>-- Pilih Level User --</option>
+                            @foreach ($levels as $level)
+                                @if ($level->id != 1)
+                                    <option value="{{ $level->id }}">{{ $level->level }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        @error('level_id') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+                    {{-- Terms Checkbox & Submit --}}
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">

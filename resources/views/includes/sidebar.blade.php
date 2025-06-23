@@ -77,22 +77,9 @@
                         <p> Dashboard</p>
                     </a>
                 </li>
-                @if (auth()->user()->level_id == 3)
+                @if (auth()->user()->level_id == 4)
                     <li class="nav-header">Menu</li>
-                @endif
-                @if (auth()->user()->level_id == 2)
-                    <li class="nav-header">Menu</li>
-                @endif
-                @if (auth()->user()->level_id == 1)
-                    <li class="nav-header">Admin Super</li>
-                    <li class="nav-item">
-                        <a href="{{ route('admin.index') }}" class="nav-link @yield('admin')">
-                            <i class="nav-icon ion ion-person-add"></i>
-                            <p>Admin</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
+                          <li class="nav-item">
                         <a href="{{ route('data-kepegawaian.index') }}" class="nav-link @yield('kepegawaian')">
                             <i class="nav-icon fas fa-id-card-alt"></i>
                             <p>Data Kepegawaian</p>
@@ -126,6 +113,91 @@
                             <p>Dokumen Sekolah/i</p>
                         </a>
                     </li>
+                @endif
+                @if (auth()->user()->level_id == 3)
+                    <li class="nav-header">Menu</li>
+                          <li class="nav-item">
+                        <a href="{{ route('data-kepegawaian.index') }}" class="nav-link @yield('kepegawaian')">
+                            <i class="nav-icon fas fa-id-card-alt"></i>
+                            <p>Data Kepegawaian</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('surat-masuk-keluar.index') }}" class="nav-link @yield('surat')">
+                            <i class="nav-icon fas fa-envelope-open-text"></i>
+                            <p>Surat</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('soal.index') }}" class="nav-link @yield('soal')">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>Soal</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('siswa.index') }}" class="nav-link @yield('siswa')">
+                             <i class="nav-icon fas fa-users"></i>
+                            <p>Siswa/i</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('dokumen-sekolah.index') }}" class="nav-link @yield('dokumen')">
+                          <i class="nav-icon fas fa-archive"></i>
+                            <p>Dokumen Sekolah/i</p>
+                        </a>
+                    </li>
+                @endif
+                @if (auth()->user()->level_id == 2)
+                    <li class="nav-header">Menu</li>
+                          <li class="nav-item">
+                        <a href="{{ route('data-kepegawaian.index') }}" class="nav-link @yield('kepegawaian')">
+                            <i class="nav-icon fas fa-id-card-alt"></i>
+                            <p>Data Kepegawaian</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('surat-masuk-keluar.index') }}" class="nav-link @yield('surat')">
+                            <i class="nav-icon fas fa-envelope-open-text"></i>
+                            <p>Surat</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('soal.index') }}" class="nav-link @yield('soal')">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>Soal</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('siswa.index') }}" class="nav-link @yield('siswa')">
+                             <i class="nav-icon fas fa-users"></i>
+                            <p>Siswa/i</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('dokumen-sekolah.index') }}" class="nav-link @yield('dokumen')">
+                          <i class="nav-icon fas fa-archive"></i>
+                            <p>Dokumen Sekolah/i</p>
+                        </a>
+                    </li>
+                @endif
+                @if (auth()->user()->level_id == 1)
+                    <li class="nav-header">Admin Super</li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.index') }}" class="nav-link @yield('admin')">
+                            <i class="nav-icon ion ion-person-add"></i>
+                            <p>Admin</p>
+                        </a>
+                    </li>
+
+
                 @endif
             </ul>
         </nav>

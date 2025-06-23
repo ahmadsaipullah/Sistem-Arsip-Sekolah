@@ -25,7 +25,8 @@ class User extends Authenticatable
         'level_id',
         'nip',
         'jabatan',
-        'image'
+        'image',
+        'no_hp'
     ];
 
 

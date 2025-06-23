@@ -87,6 +87,7 @@
                                             <a href="{{ route('surat-masuk-keluar.show', $item->id) }}" class="btn btn-xs btn-info mb-1">
                                                 <i class="fa fa-eye"></i>
                                             </a>
+                                                 @if (auth()->user()->level_id == 2)
                                             <a href="{{ route('surat-masuk-keluar.edit', $item->id) }}" class="btn btn-xs btn-warning mb-1">
                                                 <i class="fa fa-pen"></i>
                                             </a>
@@ -97,6 +98,7 @@
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

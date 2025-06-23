@@ -30,9 +30,11 @@
                             <i class="fa fa-plus"></i> Tambah Dokumen
                         </a>
                     @else
+                     @if (auth()->user()->level_id == 2)
                         <a class="btn btn-sm btn-warning" href="{{ route('dokumen-sekolah.edit', $dokumen->id) }}">
                             <i class="fa fa-pen"></i> Edit Dokumen
                         </a>
+                        @endif
                     @endif
                 </div>
                 <div class="card-body p-2">
