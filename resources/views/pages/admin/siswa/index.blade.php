@@ -31,7 +31,7 @@
                 </div>
                 <div class="card-body p-2">
                     <div class="table-responsive">
-                        <table class="table table-sm table-bordered table-striped">
+                        <table class="table table-sm table-bordered table-striped" id="Table">
                             <thead class="text-center">
                                 <tr>
                                     <th>No</th>

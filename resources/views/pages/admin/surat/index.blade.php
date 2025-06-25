@@ -31,7 +31,7 @@
                 </div>
                 <div class="card-body p-2">
                     <div class="table-responsive">
-                        <table class="table table-sm table-bordered table-striped">
+                        <table class="table table-sm table-bordered table-striped" id="Table">
                             <thead class="text-center">
                                 <tr>
                                     <th>No</th>
@@ -41,7 +41,7 @@
                                     <th>Perihal</th>
                                     <th>Tujuan / Pengirim</th>
                                     <th>Tanggal Surat</th>
-                                    <th>File</th>
+                                    {{-- <th>File</th> --}}
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -66,7 +66,7 @@
                                             @if($item->jenis_surat === 'masuk')
                                                 {{ $item->pengirim_surat }}
                                             @elseif($item->jenis_surat === 'keluar')
-                                                {{ $item->tujuan_keluar }}
+                                                {{ $item->tujuan_surat }}
                                             @else
                                                 -
                                             @endif
@@ -74,7 +74,7 @@
                                         <td>
                                             {{ $item->tanggal_surat ? \Carbon\Carbon::parse($item->tanggal_surat)->format('d-m-Y') : '-' }}
                                         </td>
-                                        <td class="text-center">
+                                        {{-- <td class="text-center">
                                             @if($item->file_dokumen)
                                                 <a href="{{ Storage::url($item->file_dokumen) }}" target="_blank" class="btn btn-xs btn-success">
                                                     <i class="fa fa-file-pdf"></i> PDF
@@ -82,11 +82,38 @@
                                             @else
                                                 <span class="text-muted">-</span>
                                             @endif
-                                        </td>
+                                        </td> --}}
                                         <td class="text-center">
                                             <a href="{{ route('surat-masuk-keluar.show', $item->id) }}" class="btn btn-xs btn-info mb-1">
                                                 <i class="fa fa-eye"></i>
                                             </a>
+                                              {{-- Tombol Lihat Dokumen --}}
+
+        <a href="{{ Storage::url($item->file_dokumen) }}" target="_blank" class="btn btn-xs btn-primary mb-1">
+            <i class="fa fa-file-pdf"></i> Lihat
+        </a>
+
+        {{-- Tombol Download --}}
+        <a href="{{ Storage::url($item->file_dokumen) }}" download class="btn btn-xs btn-success mb-1">
+            <i class="fa fa-download"></i> Download Dokumen
+        </a>
+  <a href="#" onclick="printPDF('{{ asset('storage/' . $item->file_dokumen) }}')" class="btn btn-xs btn-secondary mb-1">
+    <i class="fa fa-print"></i> Print
+</a>
+
+<script>
+    function printPDF(pdfUrl) {
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = pdfUrl;
+        document.body.appendChild(iframe);
+
+        iframe.onload = function () {
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
+        };
+    }
+</script>
                                                  @if (auth()->user()->level_id == 2)
                                             <a href="{{ route('surat-masuk-keluar.edit', $item->id) }}" class="btn btn-xs btn-warning mb-1">
                                                 <i class="fa fa-pen"></i>
